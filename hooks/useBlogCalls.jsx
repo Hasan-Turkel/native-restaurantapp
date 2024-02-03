@@ -30,9 +30,23 @@ const getReservations = async () => {
     // console.log(error);
   }
 };
+const cancelReservation = async (id) => {
+   
+  try {
+      const { data } = await axiosWithToken.put(`/reservations/${id}/`,{situation:"canceled"},
+      );
+   
+    // console.log(data);
+    // console.log(id);
+    
+  } catch (error) {
+  //   console.log(error.message);
+    // console.log(id);
+  
+  }
+};
 
-
-  return {getRestaurants, data, getReservations }
+  return {getRestaurants, data, getReservations, cancelReservation }
 
 }
 
