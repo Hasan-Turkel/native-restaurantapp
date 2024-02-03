@@ -21,9 +21,18 @@ const getRestaurants = async () => {
     // console.log(error);
   }
 };
+const getReservations = async () => {
+  try {
+    const { data } = await axiosWithToken(`/reservations`);
+    setData(data.data);
+    // console.log(data);
+  } catch (error) {
+    // console.log(error);
+  }
+};
 
 
-  return {getRestaurants, data }
+  return {getRestaurants, data, getReservations }
 
 }
 

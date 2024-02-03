@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 export const Dashboard = ({ navigation }) => {
   const { user } = useSelector((state) => state.auth);
 
-  // console.log(blogs);
+  // console.log(navigation);
   return (
     <View style={styles.container}>
       <StatusBar />

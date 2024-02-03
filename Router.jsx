@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Dashboard } from "./pages/Dashboard";
 
-import { MyBlogs } from "./pages/MyBlogs";
-import NewBlog from "./pages/NewBlog";
+import MyReservations from "./pages/MyReservations";
+import CreateReservation from "./pages/CreateReservation";
 
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
@@ -26,6 +26,7 @@ function Home() {
         headerStyle: {
           backgroundColor: "#86ecec",
         },
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Dashboard" component={Dashboard} />
@@ -45,10 +46,7 @@ const Router = () => {
           screenOptions={{
             tabBarStyle: {
               height: 50,
-              backgroundColor: "#86ecec",
-            },
-            headerStyle: {
-              backgroundColor: "#86ecec",
+              backgroundColor: "black",
             },
           }}
         >
@@ -64,21 +62,33 @@ const Router = () => {
             }}
           />
           <Tab.Screen
-            name="NewBlog"
-            component={NewBlog}
+            name="Restaurants"
+            component={Restaurants}
             options={{
-              tabBarLabel: "New Blog",
+              headerShown: false,
+              tabBarLabel: "Our Restaurants",
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="restaurant" color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="CreateReservation"
+            component={CreateReservation}
+            options={{
+              headerShown: false,
+              tabBarLabel: "Create Reservation",
               tabBarIcon: ({ color, size }) => (
                 <Entypo name="new-message" size={size} color={color} />
               ),
             }}
           />
           <Tab.Screen
-            name="MyBlogs"
-            component={MyBlogs}
+            name="MyReservations"
+            component={MyReservations}
             options={{
               headerShown: false,
-              tabBarLabel: "Me",
+              tabBarLabel: "My Reservations",
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="person" size={size} color={color} />
               ),
@@ -96,7 +106,7 @@ const Router = () => {
         >
           <Tab.Screen
             name="Home"
-            component={Dashboard}
+            component={Home}
             options={{
               headerShown: false,
               tabBarLabel: "Home",

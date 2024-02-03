@@ -6,8 +6,8 @@ import styles from "./LoginForm.style";
 import useAuthCalls from "../../../hooks/useAuthCalls";
 
 
-const LoginForm = ({navigation}) => {
-  const { login } = useAuthCalls(navigation);
+const LoginForm = () => {
+  const { login } = useAuthCalls();
 
   const loginSchema = object({
     email: string().email().required("Email is required"),
@@ -42,7 +42,7 @@ const LoginForm = ({navigation}) => {
           isSubmitting,
           /* and other goodies */
         }) => (
-          <View >
+          <View style={styles.container}>
             <Text style={styles.text} >
               Email address*
             </Text>

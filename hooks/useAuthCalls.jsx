@@ -1,21 +1,21 @@
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { fetchFail, fetchStart, loginSuccess, registerSuccess, logoutSuccess } from "../features/authSlice";
-import { Alert } from "react-native";
 
 
 
-const useAuthCalls = (navigation) => {
+
+const useAuthCalls = () => {
   const dispatch = useDispatch();
-  const BASE_URL = "https://blogapp-fs-backend.vercel.app" 
+  const BASE_URL =  "https://backend-restaurantapi.vercel.app"
 
   const login = async (values) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.post(`${BASE_URL}/users/auth/login/`, values);
+      const { data } = await axios.post(`${BASE_URL}/auth/login/`, values);
       dispatch(loginSuccess(data));
     
-      navigation.navigate("Dashboard");
+      
     //   console.log(data);
     } catch (error) {
     //   console.log(error.message);
@@ -27,10 +27,10 @@ const useAuthCalls = (navigation) => {
   const register = async (values) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.post(`${BASE_URL}/users/auth/register/`, values);
+      const { data } = await axios.post(`${BASE_URL}/auth/register/`, values);
       dispatch(registerSuccess(data));
       
-      navigation.navigate("Dashboard");
+      
     //   console.log(data);
     } catch (error) {
     //   console.log(error);
@@ -41,10 +41,10 @@ const useAuthCalls = (navigation) => {
   const logout = async () => {
     dispatch(fetchStart());
     try {
-      await axios.post(`${BASE_URL}/users/auth/logout/`);
+      await axios.post(`${BASE_URL}/auth/logout/`);
       dispatch(logoutSuccess());
     
-      navigation.navigate("Dashboard");
+     
     } catch (error) {
       // console.log(error.message);
       dispatch(fetchFail());

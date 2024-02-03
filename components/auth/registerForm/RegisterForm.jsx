@@ -5,8 +5,8 @@ import { Button, Text, TextInput, View } from "react-native";
 import styles from "./RegisterForm.style";
 import useAuthCalls from "../../../hooks/useAuthCalls";
 
-const RegisterForm = ({navigation}) => {
-    const { register } = useAuthCalls(navigation);
+const RegisterForm = () => {
+    const { register } = useAuthCalls();
     const registerSchema = object({
       email: string().email().required("Email is required"),
       password: string()
@@ -46,7 +46,7 @@ const RegisterForm = ({navigation}) => {
             isSubmitting,
             /* and other goodies */
           }) => (
-            <View >
+            <View style={styles.container}>
               <Text style={styles.text}>
                 Username*
               </Text>

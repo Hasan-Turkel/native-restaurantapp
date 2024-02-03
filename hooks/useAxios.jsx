@@ -5,7 +5,7 @@ const useAxios = () => {
   const { token } = useSelector((state) => state.auth)
 // console.log(token);
   const axiosWithToken = axios.create({
-    baseURL: "https://blogapp-fs-backend.vercel.app",
+    baseURL: "https://backend-restaurantapi.vercel.app",
     headers: { Authorization: `Token ${token}` },
   })
 
