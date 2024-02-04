@@ -1,10 +1,9 @@
-
 import { Button, Text, View } from "react-native";
-import useBlogCalls from "../../../hooks/useBlogCalls";
+import useReservationCalls from "../../../hooks/useReservationCalls";
 import styles from "./CancelCard.style";
 
 const CancelCard = ({ id, setCardId, setCancelModal, getReservations }) => {
-  const { cancelReservation  } = useBlogCalls();
+  const { cancelReservation } = useReservationCalls();
   const handleDel = () => {
     cancelReservation(id);
     setCancelModal(false);
@@ -15,19 +14,25 @@ const CancelCard = ({ id, setCardId, setCancelModal, getReservations }) => {
   };
 
   return (
-   <View style={styles.container}>
+    <View style={styles.container}>
+      <Text style={styles.title}>ATTENTİON</Text>
+      <Text>
+        You are about to cancel the reservation! This process can not be undone!
+        Are you sure about this?
+      </Text>
 
-<Text style={styles.title}>ATTENTİON</Text>
-<Text>You are about to cancel the reservation! This process can not be undone! Are you sure about this?</Text>
+      <View style={styles.buttonContainer}>
+        <Button
+          onPress={() => {
+            setCancelModal(false);
+            setCardId("");
+          }}
+          title="No, cancel please."
+        />
 
-<View style={styles.buttonContainer}>
-<Button onPress={()=>{setCancelModal(false); setCardId("")}} title="No, cancel please." />
-
-<Button onPress={handleDel} title="Yes I'm sure." color="red" />
-
-</View>
-
-   </View>
+        <Button onPress={handleDel} title="Yes I'm sure." color="red" />
+      </View>
+    </View>
   );
 };
 
