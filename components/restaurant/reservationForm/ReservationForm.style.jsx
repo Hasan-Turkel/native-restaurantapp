@@ -3,10 +3,16 @@ import { StyleSheet } from "react-native";
 export default styles = StyleSheet.create({
     container: {
       justifyContent: "center",
-      backgroundColor:"white"
+      backgroundColor:"white",
+      margin:10,
+      padding:10,
+      borderRadius:10
     },
-    date: {
-      width:100,
-      height:50
+    text:{
+        fontWeight:"bold",
+        margin:5
     },
+    option:{
+        width:"auto"
+    }
   });

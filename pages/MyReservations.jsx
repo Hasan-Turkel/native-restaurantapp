@@ -39,7 +39,7 @@ const MyReservations = () => {
     }, [])
   );
 
-  console.log(cardId);
+  // console.log(cardId);
   return (
     <View style={styles.container}>
       <StatusBar />

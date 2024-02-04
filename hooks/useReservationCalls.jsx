@@ -45,6 +45,8 @@ const useReservationCalls = (navigation) => {
   };
   const sendReservation = async (values) => {
 
+    // console.log(values);
+
     try {
       const { data } = await axiosWithToken.post(`/reservations`, values, 
       );
