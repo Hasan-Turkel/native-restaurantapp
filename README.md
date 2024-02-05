@@ -7,37 +7,37 @@ To see web repo you can visit [Frontend-Restaurantapp.](https://github.com/Hasan
 
 <img
         src="./home.jpg"
-        alt="home"
+        alt="home.jpg"
         width ="200px"
       />
 <img
         src="./dashboard.jpg"
-        alt="home"
+        alt="dashboard.jpg"
         width ="200px"
       />
 <img
         src="./update.jpg"
-        alt="home"
+        alt="update.jpg"
         width ="200px"
       />
 <img
         src="./delete.jpg"
-        alt="home"
+        alt="delete.jpg"
         width ="200px"
       />
 <img
         src="./createreservation.jpg"
-        alt="home"
+        alt="createreservation.jpg"
         width ="200px"
       />
 <img
         src="./myreservations.jpg"
-        alt="home"
+        alt="myreservations.jpg"
         width ="200px"
       />
 <img
         src="./restaurants.jpg"
-        alt="home"
+        alt="restaurants.jpg"
         width ="200px"
       />
 
