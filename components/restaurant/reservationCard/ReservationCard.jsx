@@ -3,7 +3,7 @@ import styles from "./ReservationCard.style";
 import { Button, Image, Text, View } from "react-native";
 
 
-const ReservationCard = ({ reservation, setCancelModal, setCardId }) => {
+const ReservationCard = ({ reservation, setCancelModal, setCardId, setUpdateModal }) => {
   return (
     <View style={styles.container}>
       <Image
@@ -32,7 +32,7 @@ const ReservationCard = ({ reservation, setCancelModal, setCardId }) => {
       {reservation.situation == "reserved" &&
         new Date(reservation.date) > new Date() && (
           <View style={styles.buttonContainer}>
-            <Button onPress={null} title="Update" />
+            <Button onPress={()=>{setUpdateModal(true); setCardId(reservation._id)}} title="Update" />
             <Button onPress={()=>{setCancelModal(true); setCardId(reservation._id)}} title="Cancel" color="red" />
           </View>
         )}

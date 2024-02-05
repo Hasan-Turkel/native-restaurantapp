@@ -57,8 +57,25 @@ const useReservationCalls = (navigation) => {
      
     }
   };
+  const updateReservation = async (values) => {
+   
+    try {
+        const { data } = await axiosWithToken.put(`/reservations/${values.id}/`,values,
+        );
+     
+     
+      // console.log(values);
+      // console.log(id);
+      
+    } catch (error) {
+    //   console.log(error.message);
+      // console.log(id);
+    
+    
+    }
+  };
 
-  return { getRestaurants, data, getReservations, cancelReservation, sendReservation };
+  return { getRestaurants, data, getReservations, cancelReservation, sendReservation, updateReservation };
 };
 
 export default useReservationCalls;

@@ -14,6 +14,7 @@ import ReservationCard from "../components/restaurant/reservationCard";
 import Modal from "react-native-modal";
 import CancelCard from "../components/restaurant/cancelCard";
 import UpdateCard from "../components/restaurant/updateCard";
+import useAuthCalls from "../hooks/useAuthCalls";
 
 const MyReservations = () => {
   const [cancelModal, setCancelModal] = useState(false);
@@ -25,11 +26,13 @@ const MyReservations = () => {
     data: reservations,
     getReservations,
   } = useReservationCalls();
+  const {logout} = useAuthCalls()
   renderItem = ({ item }) => (
     <ReservationCard
       reservation={item}
       setCancelModal={setCancelModal}
       setCardId={setCardId}
+      setUpdateModal={setUpdateModal}
     />
   );
   useFocusEffect(
@@ -47,6 +50,7 @@ const MyReservations = () => {
         source={require("../public/restaurant.jpg")}
         style={styles.image}
       >
+        <Text style={styles.logout} onPress={()=> logout()}>Logout</Text>
         <FlatList
           style={styles.list}
           data={reservations}
@@ -67,9 +71,15 @@ const MyReservations = () => {
           setCancelModal={setCancelModal}
         />
       </Modal>
-      {/* <Modal isVisible={true} >
-         <UpdateCard/>
-      </Modal> */}
+      <Modal isVisible={updateModal}
+       onBackdropPress={() => {
+        setUpdateModal(false);
+        setCardId("");
+      }}
+       >
+         <UpdateCard getReservations={getReservations} id={cardId} setCardId={setCardId}
+          setUpdateModal={setUpdateModal}/>
+      </Modal>
     </View>
   );
 };
@@ -87,6 +97,13 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
   },
+  logout:{
+    color:"white",
+    textAlign:"right",
+    padding:10,
+    fontSize:30,
+    backgroundColor:"black"
+  }
 });
 
 export default MyReservations;

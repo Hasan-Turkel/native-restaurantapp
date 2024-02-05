@@ -8,7 +8,7 @@ import Mili from "miliseconds";
 import SelectDropdown from "react-native-select-dropdown";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-const ReservationForm = ({ navigation }) => {
+const ReservationForm = ({ buttonTitle, func, getReservations, id, setUpdateModal }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const maxDate = new Date(+new Date() + new Mili().days(13).value());
@@ -24,8 +24,39 @@ const ReservationForm = ({ navigation }) => {
     err,
     data: restaurants,
     getRestaurants,
-    sendReservation,
-  } = useReservationCalls(navigation);
+  } = useReservationCalls();
+
+  const send = ()=>{
+    func({
+      ...values,
+      date: values.date.toISOString().slice(0, 10),
+      hour: values.hour.toISOString().slice(11, 16),
+    });
+    dropdownRef.current.reset();
+    setValues({
+      branchId: "",
+      date: minDate,
+      hour: new Date(+new Date + new Mili().hours(3).value()),
+    })
+  }
+  const update = ()=>{
+    func({
+      ...values,
+      id:id,
+      date: values.date.toISOString().slice(0, 10),
+      hour: values.hour.toISOString().slice(11, 16),
+    });
+    setUpdateModal(false)
+    setTimeout(() => {
+      getReservations();
+    }, 1000);
+    dropdownRef.current.reset();
+    setValues({
+      branchId: "",
+      date: minDate,
+      hour: new Date(+new Date + new Mili().hours(3).value()),
+    })
+  }
 
   useFocusEffect(
     useCallback(() => {
@@ -91,21 +122,8 @@ const ReservationForm = ({ navigation }) => {
       />
 
       <Button
-        onPress={() => {
-          sendReservation({
-            ...values,
-            date: values.date.toISOString().slice(0, 10),
-            hour: values.hour.toISOString().slice(11, 16),
-          });
-          dropdownRef.current.reset();
-          setValues({
-            branchId: "",
-            date: minDate,
-            hour: new Date(+new Date + new Mili().hours(3).value()),
-          })
-
-        }}
-        title="Create New Reservation"
+        onPress={id?update:send}
+        title={buttonTitle}
       />
     </View>
   );
